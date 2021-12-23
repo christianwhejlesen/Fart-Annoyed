@@ -20,7 +20,6 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
-#include "Brick.h"
 
 Game::Game( MainWindow& wnd )
 	:
@@ -43,6 +42,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	Brick b(RectF(40.0f, 100.0f, 40.0f, 60.0f), Colors::Yellow);
-	b.Draw(gfx);
+	
 }
