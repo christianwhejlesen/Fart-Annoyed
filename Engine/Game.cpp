@@ -24,7 +24,12 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	ball( Vec2{400.0f,300.0f}, Vec2{300.0f,300.0f}),
+	walls(0.0f,float(gfx.ScreenWidth), 0.0f, float(gfx.ScreenHeight)),
+	soundPad(L"Sounds\\arkpad.wav"),
+	soundBrick(L"Sounds\\arkbrick.wav"),
+	brick(RectF(400.0f,520.0f,200.0f,220.0f),Colors::Green)
 {
 }
 
@@ -38,9 +43,24 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	float fElapsedTime = ft.Mark();
+
+	ball.Update(fElapsedTime);
+
+	if (ball.WallBounce(walls))
+	{
+		soundPad.Play();
+	}
+
+	if (brick.HasCollided(ball))
+	{
+		soundBrick.Play();
+	}
+	
 }
 
 void Game::ComposeFrame()
 {
-	
+	brick.Draw(gfx);
+	ball.Draw(gfx);
 }
