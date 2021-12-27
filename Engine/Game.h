@@ -56,6 +56,7 @@ private:
 	static constexpr float fOffsetY = 50.0f;
 	static constexpr int nBricks = nBrickColumns * nBrickRows;
 	static constexpr int nColors = 4;
+	int nScore = 0;
 	Ball ball;
 	Brick bricks[nBricks];
 	const Vec2 padPosition { float(gfx.ScreenWidth / 2), float(gfx.ScreenHeight - 30) };

@@ -70,6 +70,7 @@ void Game::UpdateModel()
 		if (bricks[i].HasCollided(ball))
 		{
 			soundBrick.Play();
+			nScore++;
 			break;
 		}
 	}
