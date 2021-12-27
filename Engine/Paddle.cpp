@@ -47,7 +47,7 @@ void Paddle::WallCollision(const RectF& walls)
 
 bool Paddle::BallCollision(Ball& ball) const
 {
-	if (rect.IsHit(ball.GetRect()))
+	if (ball.GetVelocity().y > 0.0f && rect.IsOverLapping(ball.GetRect()))
 	{
 		ball.BounceY();
 		return true;

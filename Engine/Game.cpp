@@ -65,9 +65,10 @@ void Game::UpdateModel()
 	{
 		//soundPad.Play();
 	}
-	for (int i = 0; i < nBricks; i++)
+
+	for (Brick& b : bricks)
 	{
-		if (bricks[i].HasCollided(ball))
+		if (b.HasCollided(ball))
 		{
 			soundBrick.Play();
 			nScore++;
@@ -85,9 +86,9 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	for (int i = 0; i < nBricks; i++)
+	for (const Brick& b : bricks)
 	{
-		bricks[i].Draw(gfx);
+		b.Draw(gfx);
 	}
 	pad.Draw(gfx);
 	ball.Draw(gfx);

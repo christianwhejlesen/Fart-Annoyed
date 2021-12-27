@@ -11,9 +11,7 @@ void Brick::Draw(Graphics& gfx) const
 {
 	if (!destroyed)
 	{
-		const RectF rPad(rect.left + fPadding, rect.right - fPadding, rect.top + fPadding, rect.bottom - fPadding);
-
-		gfx.DrawRect(rPad, color);
+		gfx.DrawRect(rect.GetExpanded(-fPadding), color);
 	}
 }
 

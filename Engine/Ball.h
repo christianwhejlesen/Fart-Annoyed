@@ -13,6 +13,7 @@ public:
 	void BounceX();
 	void BounceY();
 	RectF GetRect() const;
+	Vec2 GetVelocity() const;
 
 private:
 	Vec2 position;
