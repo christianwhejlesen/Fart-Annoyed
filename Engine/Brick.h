@@ -7,15 +7,16 @@
 class Brick
 {
 public:
+	Brick() = default;
 	Brick(const RectF& in_rect, Color in_color);
 	void Draw(Graphics& gfx) const;
 	RectF GetRect();
 	bool HasCollided(Ball& ball);
-	bool IsDestroyed();
 
 private:
 	RectF rect;
 	Color color;
 	bool destroyed = false;
+	static constexpr float fPadding = 1.0f;
 };
 

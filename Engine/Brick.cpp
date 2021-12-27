@@ -11,7 +11,9 @@ void Brick::Draw(Graphics& gfx) const
 {
 	if (!destroyed)
 	{
-		gfx.DrawRect(rect, color);
+		const RectF rPad(rect.left + fPadding, rect.right - fPadding, rect.top + fPadding, rect.bottom - fPadding);
+
+		gfx.DrawRect(rPad, color);
 	}
 }
 
@@ -31,9 +33,5 @@ bool Brick::HasCollided(Ball& ball)
 	return false;
 }
 
-bool Brick::IsDestroyed()
-{
-	return destroyed;
-}
 
 

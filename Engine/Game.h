@@ -27,6 +27,7 @@
 #include "FrameTimer.h"
 #include "Sound.h"
 #include "Brick.h"
+#include "Paddle.h"
 
 
 class Game
@@ -47,8 +48,18 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	static constexpr int nBrickColumns = 16;
+	static constexpr int nBrickRows = 7;
+	static constexpr float fBrickWidth = 40.0f;
+	static constexpr float fBrickHeight = 20.0f;
+	const float fOffsetX = float((gfx.ScreenWidth / 2) - (nBrickColumns*fBrickWidth)/2);
+	static constexpr float fOffsetY = 50.0f;
+	static constexpr int nBricks = nBrickColumns * nBrickRows;
+	static constexpr int nColors = 4;
 	Ball ball;
-	Brick brick;
+	Brick bricks[nBricks];
+	const Vec2 padPosition { float(gfx.ScreenWidth / 2), float(gfx.ScreenHeight - 30) };
+	Paddle pad;
 	FrameTimer ft;
 	RectF walls;
 	Sound soundPad;

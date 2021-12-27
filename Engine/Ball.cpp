@@ -50,8 +50,6 @@ bool Ball::WallBounce(const RectF& wall)
 }
 
 
-
-
 void Ball::BounceX()
 {
 	velocity.x = -velocity.x;
