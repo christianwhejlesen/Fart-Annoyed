@@ -26,6 +26,13 @@ bool RectF::IsOverLapping(const RectF& other) const
 	return right > other.left && left < other.right && top < other.bottom && bottom > other.top;
 }
 
+float RectF::DistanceFromCenter(const Vec2& other) const
+{
+	return other.GetLengthSq();
+}
+
+
+
 
 RectF RectF::FromCenter(const Vec2& center, float halfWidth, float halfHeight)
 {

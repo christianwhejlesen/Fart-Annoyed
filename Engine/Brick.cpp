@@ -24,11 +24,21 @@ bool Brick::HasCollided(Ball& ball)
 {
 	if (!destroyed && rect.IsOverLapping(ball.GetRect()))
 	{
-		ball.BounceY();
-		destroyed = true;
+		//ball.BounceY();
+		//destroyed = true;
 		return true;
 	}
 	return false;
+}
+
+float Brick::Distance(Ball& ball)
+{
+	return ball.GetRect().DistanceFromCenter(ball.GetPosition());
+}
+
+void Brick::IsDestroyed()
+{
+	destroyed = true;
 }
 
 
