@@ -45,12 +45,28 @@ void Paddle::WallCollision(const RectF& walls)
 	rect = GetRect();
 }
 
-bool Paddle::BallCollision(Ball& ball) const
+bool Paddle::BallCollision(Ball& ball)
 {
-	if (ball.GetVelocity().y > 0.0f && rect.IsOverLapping(ball.GetRect()))
+	if (!coolDown)
 	{
-		ball.BounceY();
-		return true;
+		if (rect.IsOverLapping(ball.GetRect()))
+		{
+			const Vec2 ballPos = ball.GetPosition();
+			if (signbit(ball.GetVelocity().x) == signbit((ballPos - position).x))
+			{
+				ball.BounceY();
+			}
+			else if (ballPos.x >= rect.left && ballPos.x <= rect.right)
+			{
+				ball.BounceY();
+			}
+			else
+			{
+				ball.BounceX();
+			}
+			SetCoolDown(true);
+			return true;
+		}
 	}
 	return false;
 }
@@ -65,4 +81,9 @@ void Paddle::Draw(Graphics& gfx)
 RectF Paddle::GetRect()
 {
 	return RectF::FromCenter(position, halfWidth, halfHeight);
+}
+
+void Paddle::SetCoolDown(bool setValue)
+{
+	coolDown = setValue;
 }

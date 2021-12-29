@@ -46,15 +46,21 @@ Game::Game( MainWindow& wnd )
 
 void Game::Go()
 {
-	gfx.BeginFrame();	
-	UpdateModel();
+	gfx.BeginFrame();
+	float elapsedTime = ft.Mark();
+	while (elapsedTime>0.0f)
+	{
+		const float dt = std::min(0.0025f, elapsedTime);
+		UpdateModel(dt);
+		elapsedTime -= dt;
+	}
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
+void Game::UpdateModel(float fElapsedTime)
 {
-	float fElapsedTime = ft.Mark();
+	//float fElapsedTime = ft.Mark();
 
 	pad.Update(wnd.kbd, fElapsedTime);
 	pad.WallCollision(walls);
@@ -63,6 +69,7 @@ void Game::UpdateModel()
 
 	if (ball.WallBounce(walls))
 	{
+		pad.SetCoolDown(false);
 		//soundPad.Play();
 	}
 
@@ -97,6 +104,7 @@ void Game::UpdateModel()
 		soundBrick.Play();
 		nScore++;
 		bricks[nCurColIndex].Destroy(ball);
+		pad.SetCoolDown(false);
 	}
 
 	if (pad.BallCollision(ball))

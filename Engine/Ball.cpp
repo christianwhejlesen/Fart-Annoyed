@@ -46,6 +46,7 @@ bool Ball::WallBounce(const RectF& wall)
 		BounceY();
 		collided = true;
 	}
+
 	return collided;
 }
 

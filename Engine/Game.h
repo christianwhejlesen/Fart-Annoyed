@@ -39,7 +39,7 @@ public:
 	void Go();
 private:
 	void ComposeFrame();
-	void UpdateModel();
+	void UpdateModel(float fElapsedTime);
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -59,7 +59,7 @@ private:
 	int nScore = 0;
 	Ball ball;
 	Brick bricks[nBricks];
-	const Vec2 padPosition { float(gfx.ScreenWidth / 2), float(gfx.ScreenHeight - 30) };
+	const Vec2 padPosition { float(gfx.ScreenWidth / 2), float(gfx.ScreenHeight - 80) };
 	Paddle pad;
 	FrameTimer ft;
 	RectF walls;

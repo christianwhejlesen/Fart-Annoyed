@@ -14,10 +14,10 @@ public:
 	//Paddle(const RectF& in_rect, Color in_color);
 	void Update(Keyboard& kbd, float dt);
 	void WallCollision(const RectF& walls);
-	bool BallCollision(Ball& ball) const;
+	bool BallCollision(Ball& ball);
 	void Draw(Graphics& gfx);
 	RectF GetRect();
-
+	void SetCoolDown(bool setValue);
 
 private:
 	static constexpr float halfWidth = 40.0f;
@@ -29,6 +29,7 @@ private:
 	static constexpr float speed = 400.0f;
 	RectF rect;
 	Vec2 position;
+	bool coolDown = false;
 };
 
 
