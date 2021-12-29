@@ -12,8 +12,8 @@ public:
 	void Draw(Graphics& gfx) const;
 	RectF GetRect();
 	bool HasCollided(Ball& ball);
-	float Distance(Ball& ball);
-	void IsDestroyed();
+	void Destroy(Ball& ball);
+	Vec2 GetCenter() const;
 
 private:
 	RectF rect;

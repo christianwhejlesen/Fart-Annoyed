@@ -12,6 +12,7 @@ public:
 	float DistanceFromCenter(const Vec2& other) const;
 	static RectF FromCenter(const Vec2& center, float halfWidth, float haltHeight);
 	RectF GetExpanded(float offset) const;
+	Vec2 GetCenter() const;
 
 public:
 	float left;

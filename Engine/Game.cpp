@@ -66,28 +66,37 @@ void Game::UpdateModel()
 		//soundPad.Play();
 	}
 
-	float fOldDist = 1000000.0f;
-	float fNewDist = 0.0f;
-	int nBrickToCollide = nBricks + 1;
+	bool collisionHappend = false;
+	float fCurColDistSq;
+	int nCurColIndex;
 
 	for (int i = 0; i < nBricks; i++)
 	{
 		if (bricks[i].HasCollided(ball))
 		{
-			fNewDist = bricks[i].Distance(ball);
-			if (fNewDist<fOldDist)
+			const float fNexColDistSq = (ball.GetPosition() - bricks[i].GetCenter()).GetLengthSq();
+			if (collisionHappend)
 			{
-				nBrickToCollide = i;
-				fOldDist = fNewDist;
+				if (fNexColDistSq < fCurColDistSq)
+				{
+					fCurColDistSq = fNexColDistSq;
+					nCurColIndex = i;
+				}
+			}
+			else
+			{
+				collisionHappend = true;
+				fCurColDistSq = fNexColDistSq;
+				nCurColIndex = i;
 			}
 		}
 	}
-	if (nBrickToCollide < nBricks + 1)
+
+	if (collisionHappend)
 	{
 		soundBrick.Play();
 		nScore++;
-		bricks[nBrickToCollide].IsDestroyed();
-		ball.BounceY();
+		bricks[nCurColIndex].Destroy(ball);
 	}
 
 	if (pad.BallCollision(ball))
